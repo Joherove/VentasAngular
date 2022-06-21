@@ -1,0 +1,106 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="titulo">TIENDA COSMETICOS BELLEZA</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="titulo">LISTADO DE PRODUCTOS</h5>
+                    
+                        <table class="table">
+                            <tbody>                            
+                                <th>{{ descripcion }}</th>
+                                <th>{{ valor }}</th>
+                                <th>{{ color }}</th>
+                                <th>{{ cantidad }}</th>
+                                <th>{{ agregar }}</th>
+                                <tr *ngFor="let producto of listProductos">
+                                    <td>{{ producto.descripcion }}</td>
+                                    <td>{{ producto.valor }}</td>
+                                    <td>{{ producto.color }}</td>
+                                    <td>{{ producto.cantidad }}</td>
+                                    <td *ngIf="producto.cantidad > 0">
+                                        <i (click)="seleccionarProducto(producto)" class="fa-solid fa-plus text-info"></i>                                    
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="titulo">PRODUCTOS SELLECIONADOS</h5>
+                    <form [formGroup]="form" (ngSubmit)="guardarProducto()">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <table class="table">
+                                    <tbody>                            
+                                        <th>{{ descripcion }}</th>
+                                        <th>{{ color }}</th>
+                                        <th>{{ valor }}</th>
+                                        
+                                        <tr *ngFor="let producto of listVenta">
+                                            <td>{{ producto.descripcion }}</td>
+                                            <td>{{ producto.color }}</td>
+                                            <td>{{ producto.valor }}</td>                                                          
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">
+                                                <i class="fa-solid fa-file-signature"
+                                                [class.green-icon]="this.form.get('nombre')?.valid"
+                                                [class.red-icon]="this.form.get('nombre')?.invalid && this.form.get('nombre')?.touched">
+                                                </i>
+                                            </span>
+                                            <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre">
+                                        </div>
+                                    </div>
+                                    <div class="col lg-6">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">
+                                                <i class="fa-solid fa-map-location"
+                                                [class.green-icon]="this.form.get('direccion')?.valid"
+                                                [class.red-icon]="this.form.get('direccion')?.invalid && this.form.get('direccion')?.touched"></i>
+                                            </span>
+                                            <input formControlName="direccion" type="text" class="form-control" placeholder="Direccion">
+                                        </div>  
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label for="totalVenta">Venta Total</label>
+                                        <h3>${{ valorTotal }}</h3>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="d-grid gap-2">
+                                            <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                                                <i class="fas fa-database"></i>&nbsp; Comprar
+                                            </button>
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

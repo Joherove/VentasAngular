@@ -14,3 +14,7 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+
+
+// Implemente una pantalla de ventas para la tienda de cosméticos "Belleza" donde se permita agregar productos de la tienda. 
+// El sistema debe presentar el valor total de los productos. Para guardar el pedido, el usuario debe indicar su cédula y dirección de entrega. 
